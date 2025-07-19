@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Fuente General';
+  src: url('../Recursos/Fuentes/qualera.otf') format('opentype');
+}
+
+body {
+  font-family: 'Neue Haas Grotesk Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
+}

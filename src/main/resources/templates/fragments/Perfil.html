@@ -1,0 +1,66 @@
+<!----------------------------------------------------Perfil--------------------------------------------------------->
+<div class="perfil position-fixed end-0 p-3" th:fragment="Perfil">
+  <!-- Imagen de perfil con ícono (activa el menú colapsable) -->
+  <div
+    class="d-flex align-items-center"
+    data-bs-toggle="collapse"
+    data-bs-target="#menuMiniPerfil"
+    style="cursor: pointer"
+  >
+    <img th:src="@{/Img/perfil.png}" alt="Perfil" class="img-perfil" />
+    <i class="bi bi-caret-down-fill ms-1"></i>
+  </div>
+
+  <!-- Menú de MiniPerfil -->
+  <div id="menuMiniPerfil" class="collapse mt-5">
+    <!-- Tarjeta que contiene los datos del perfil y opciones -->
+    <div class="card shadow menu-contenedor">
+      <!-- Sección superior con info del usuario -->
+      <div class="p-3">
+        <small class="text-muted">Perfil de: </small>
+        <div
+          class="d-flex align-items-center rounded p-1 mt-1"
+          style="max-width: 300px"
+        >
+          <!-- Mini imagen del perfil -->
+          <img th:src="@{/Img/perfil.png}" class="img-perfil-mini me-2" />
+          <!-- Nombre y correo del usuario -->
+          <div class="flex-grow-1 min-w-0">
+            <small class="text-muted">
+              <span sec:authorize="hasRole('ADMIN')">Administrador</span>
+              <span sec:authorize="hasRole('USER')">Usuario</span> </small
+            ><br />
+            <small
+              class="text-muted text-truncate d-block"
+              style="max-width: 180px"
+            >
+              <span sec:authentication="name"></span>
+            </small>
+          </div>
+
+          <!-- Icono de verificación -->
+          <i class="bi bi-check2 ms-auto text-dark"></i>
+        </div>
+      </div>
+
+      <!-- Línea divisoria -->
+      <hr class="my-1" />
+
+      <!-- Sección inferior con opciones -->
+      <div class="p-3">
+        <div class="opcion-menu">Editar perfil</div>
+        <small class="text-muted">Configuraciones</small>
+        <div class="opcion-menu" id="btnModoOscuro">Modo oscuro</div>
+        <form th:action="@{/logout}" method="post">
+          <button
+            type="submit"
+            class="opcion-menu text-danger"
+            style="border: none; background: none; padding: 0"
+          >
+            Cerrar Sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

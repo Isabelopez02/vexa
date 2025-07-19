@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" th:href="@{/CSS/Inicio.css}" />
+    <!-- Componentes -->
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Globales.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Navbar.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/BarraBusqueda.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Modales.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Perfil.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/ModoOscuro.css}" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div th:replace="/fragments/Navbar :: Navbar"></div>
+
+    <!-- Barra de búsqueda -->
+    <div th:replace="/fragments/BarraBusqueda :: BarraBusqueda"></div>
+
+    <!-- Perfil -->
+    <div th:replace="/fragments/Perfil :: Perfil"></div>
+
+    <!-------------------------------------------------Tabla de etequitas--------------------------------------------------->
+    <div class="container-tabla">
+      <!-- Título de la tabla-->
+      <h2 class="mb-3 titulo">Listado de Etiquetas</h2>
+
+      <!-- Tabla Responsive-->
+      <div class="table-responsive">
+        <table
+          id="tablaTareas"
+          class="table table-light table-hover align-middle text-center"
+        >
+          <!-- Encabezados de la tabla -->
+          <thead class="table-responsive">
+            <tr>
+              <th>Cod</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Color</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <!---------------------------------------- datos de la tabla ------------------------------------------------>
+          <tbody class="table-responsive">
+            <tr th:each="etiqueta, iterStat : ${etiquetas}">
+              <td th:text="${iterStat.index + 1}"></td>
+              <td th:text="${etiqueta.nombre}"></td>
+              <td th:text="${etiqueta.descripcion}"></td>
+              <td th:text="${etiqueta.color}"></td>
+
+              <td class="td-acciones">
+                <div class="d-flex justify-content-center gap-2 p-2">
+                  <button
+                    class="btn btn-sm btn-editar"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalEditarEtiqueta"
+                    th:attr="
+          data-id=${etiqueta.id_etiqueta},
+          data-nombre=${etiqueta.nombre},
+          data-descripcion=${etiqueta.descripcion},
+          data-color=${etiqueta.color},
+          data-icono=${etiqueta.icono}"
+                  >
+                    <i class="bi bi-pen-fill"></i>
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-eliminar"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalEliminarEtiqueta"
+                    th:attr="data-id=${etiqueta.id_etiqueta}"
+                  >
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--------------------Modal editar etiqueta------------->
+    <div
+      class="modal fade"
+      id="modalEditarEtiqueta"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 modal-redondeado">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <div class="logo-modal">
+                <img
+                  src="../Recursos/Img/LogoSolo.png"
+                  alt="Logo"
+                  class="img-fluid mb-0"
+                  style="width: 70px"
+                />
+              </div>
+              <h2 class="titulo-modal mt-3 mb-2">Editar Etiqueta</h2>
+              <p class="mb-0">Modifica los datos de la etiqueta</p>
+            </div>
+
+            <form th:action="@{/etiquetas/editar}" method="post">
+              <input type="hidden" id="editIdEtiqueta" name="id_etiqueta" />
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="editNombre" class="form-label label-modal"
+                    >Nombre</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editNombre"
+                    name="nombre"
+                    required
+                  />
+
+                  <label
+                    for="editDescripcion"
+                    class="form-label label-modal mt-3"
+                    >Descripción</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="editDescripcion"
+                    name="descripcion"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="editColor" class="form-label label-modal"
+                    >Color</label
+                  >
+                  <input
+                    type="color"
+                    class="form-control form-control-color"
+                    id="editColor"
+                    name="color"
+                    required
+                  />
+
+                  <label for="editIcono" class="form-label label-modal mt-3"
+                    >Icono</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editIcono"
+                    name="icono"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center gap-3 mt-4">
+                <button type="submit" class="btn-modal">Guardar</button>
+                <button
+                  type="button"
+                  class="btn-cancelar"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--------------------------------------------Modal de Nueva Etiqueta--------------------------------------------------->
+    <div class="modal fade" id="modalNuevaEtiqueta">
+      <!-- Contenedor del modal centrado-->
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 modal-redondeado">
+          <div class="card-body p-5">
+            <!-- Encabezado del modal -->
+            <div class="text-center mb-4">
+              <div class="logo-modal">
+                <!-- Imagen del logo -->
+                <img
+                  src="../Recursos/Img/LogoSolo.png"
+                  alt="Logo"
+                  class="img-fluid mb-0"
+                  style="width: 70px; z-index: 1000"
+                />
+              </div>
+              <!-- Título y descripción del modal -->
+              <h2 class="titulo-modal mt-3 mb-2">Crear Etiqueta</h2>
+              <p class="mb-0">
+                Completa los datos para agregar una nueva etiqueta
+              </p>
+            </div>
+
+            <form class="p-2" th:action="@{/guardar}" method="post">
+              <div class="row">
+                <!-- Columna izquierda -->
+                <div class="col-md-6 mb-3">
+                  <!-- Título -->
+                  <div class="mb-2">
+                    <label for="titulo" class="form-label label-modal"
+                      >Nombre</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      name="nombre"
+                      required
+                    />
+                  </div>
+                  <!-- Descripción -->
+                  <div class="mb-2">
+                    <label for="descripcion" class="form-label label-modal"
+                      >Descripción</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="descripcion"
+                      name="descripcion"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Columna derecha -->
+                <div class="col-md-6 mb-3">
+                  <!-- Color -->
+                  <div class="mb-2">
+                    <label for="etiqueta" class="form-label label-modal"
+                      >Color</label
+                    >
+                    <input
+                      type="color"
+                      class="form-control form-control-color"
+                      id="color"
+                      name="color"
+                      value="#000000"
+                      required
+                    />
+                  </div>
+                  <!-- Icono -->
+                  <div class="mb-2">
+                    <label for="etiqueta" class="form-label label-modal"
+                      >Icono</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="icono"
+                      name="icono"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botones -->
+              <div class="d-flex justify-content-center gap-3 mt-4">
+                <button type="submit" class="btn-modal">Guardar</button>
+                <button
+                  type="button"
+                  class="btn-cancelar"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--------------------------------------------------- Modal Eliminar Tarea -------------------------------------------------->
+    <div
+      class="modal fade"
+      id="modalEliminarEtiqueta"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content border-0 modal-redondeado">
+          <div class="card-body p-4">
+            <!-- Titulo de modal -->
+            <div class="text-center mb-4">
+              <div class="logo-modal">
+                <img
+                  src="../Recursos/Img/LogoSolo.png"
+                  alt="Logo"
+                  class="img-fluid mb-0"
+                  style="width: 70px"
+                />
+              </div>
+              <h2 class="titulo-modal mt-3 mb-3">¡Eliminar Etiqueta!</h2>
+              <p class="mb-0">¿Está seguro de querer eliminar esta etiqueta?</p>
+            </div>
+
+            <!-- Botones de acción (Confirmar y Cancelar) -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <form
+                th:action="@{/etiquetas/eliminar}"
+                id="formEliminarEtiqueta"
+                method="post"
+                style="display: inline"
+              >
+                <input
+                  type="hidden"
+                  name="id_etiqueta"
+                  id="idEtiquetaEliminar"
+                />
+                <button type="submit" class="btn-modal">Confirmar</button>
+              </form>
+              <button
+                type="button"
+                class="btn-cancelar"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------------------Botón nueva etiqueta--------------------------------------------------->
+    <div class="boton-nueva-tarea position-fixed bottom-0 end-0 p-4">
+      <button
+        class="btn-nueva-tarea"
+        data-bs-toggle="modal"
+        data-bs-target="#modalNuevaEtiqueta"
+      >
+        <i class="bi bi-plus-circle-fill fs-3"></i>
+      </button>
+    </div>
+
+    <script>
+      var modalEliminar = document.getElementById("modalEliminarEtiqueta");
+      modalEliminar.addEventListener("show.bs.modal", function (event) {
+        var button = event.relatedTarget; // botón que abrió el modal
+        var id = button.getAttribute("data-id"); // obtener ID
+        var inputHidden = document.getElementById("idEtiquetaEliminar");
+        inputHidden.value = id; // actualizar acción del formulario
+      });
+      var modalEditar = document.getElementById("modalEditarEtiqueta");
+      modalEditar.addEventListener("show.bs.modal", function (event) {
+        var button = event.relatedTarget;
+
+        document.getElementById("editIdEtiqueta").value =
+          button.getAttribute("data-id");
+        document.getElementById("editNombre").value =
+          button.getAttribute("data-nombre");
+        document.getElementById("editDescripcion").value =
+          button.getAttribute("data-descripcion");
+        document.getElementById("editColor").value =
+          button.getAttribute("data-color");
+        document.getElementById("editIcono").value =
+          button.getAttribute("data-icono");
+      });
+    </script>
+
+    <script src="../JavaScript/ModoOscuro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

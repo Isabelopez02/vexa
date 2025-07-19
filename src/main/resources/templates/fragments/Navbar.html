@@ -1,0 +1,65 @@
+
+
+  <!-------------------------------------------Barra de navegación vertical-------------------------------------------->
+  <nav class="navbar-vertical" th:fragment="Navbar">
+
+    <!-- Logo de la aplicación -->
+    <div class="navbar-contenedor navbar-logo d-flex justify-content-center align-items-center"
+      style="border-radius: 50%;">
+      <a class="navbar-brand p-2" href="#">
+        <img th:src="@{/Img/LogoSolo.png}" alt="Logo" class="logo-navbar" style="width: 30px;">
+      </a>
+      <span class="badge badge-hover bg-dark">Vexa</span>
+    </div>
+
+    <!-- Opción: Agregar Rol hijos -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center" sec:authorize="hasRole('ADMIN')">
+      <a class="navbar-brand p-2" th:href="@{/hijos}">
+        <i class="bi bi-people-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Usuarios</span>
+      </a>
+    </div>
+
+    <!-- Opción: Inicio -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center" sec:authorize="hasRole('ADMIN')">
+      <a class="navbar-brand p-2" href="/inicio">
+        <i class="bi bi-house-door-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Inicio</span>
+      </a>
+    </div>
+
+    <!-- Opción: Pendientes -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center">
+      <a class="navbar-brand p-2" href="/tareas/pendiente">
+        <i class="bi bi-alarm-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Pendientes</span>
+      </a>
+    </div>
+
+    <!-- Opción: Completados -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center">
+      <a class="navbar-brand p-2" href="/tareas/completadas">
+        <i class="bi bi-clipboard-check-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Completados</span>
+      </a>
+    </div>
+
+    <!-- Opción: Etiquetas -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center" sec:authorize="hasRole('ADMIN')">
+      <a class="navbar-brand p-2" href="/etiquetas">
+        <i class="bi bi-tags-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Etiquetas</span>
+      </a>
+    </div>
+
+    <!-- Opción: Estadísticas -->
+    <div class="navbar-contenedor d-flex justify-content-center align-items-center">
+      <a class="navbar-brand p-2" href="#">
+        <i class="bi bi-bar-chart-fill navbar-icono"></i>
+        <span class="badge badge-hover bg-dark">Estadísticas</span>
+      </a>
+    </div>
+
+    
+
+  </nav>

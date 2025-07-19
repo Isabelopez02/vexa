@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html
+  lang="es"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Usuarios</title>
+
+    <!-- Bootstrap y estilos -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/CSS/Inicio.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Globales.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Navbar.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Perfil.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/BarraBusqueda.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/Componentes/Modales.css}" />
+  </head>
+
+  <body>
+    <!-- Navbar y Perfil -->
+    <div th:replace="/fragments/Navbar :: Navbar"></div>
+    <!-- Barra de búsqueda -->
+    <div th:replace="/fragments/BarraBusqueda :: BarraBusqueda"></div>
+    <div th:replace="/fragments/Perfil :: Perfil"></div>
+
+    <div class="container-tabla">
+      <h2 class="mb-4 titulo">Lista de Hijos Registrados</h2>
+
+      <div class="table-responsive">
+        <table class="table table-light table-hover align-middle text-center">
+          <thead class="table-responsive">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Contraseña</th>
+              <th>Roles</th>
+            </tr>
+          </thead>
+          <tbody class="table-responsive">
+            <tr th:each="hijo, stat : ${hijos}">
+              <td th:text="${stat.count}"></td>
+              <td th:text="${hijo.nombreUsuario}"></td>
+              <td th:text="${hijo.correo}"></td>
+              <td th:text="${hijo.contrasenaVisible}"></td>
+              <td>
+                <span
+                  th:each="rol : ${hijo.roles}"
+                  th:text="${rol.name}"
+                  class="badge bg-secondary me-1"
+                ></span>
+              </td>
+            </tr>
+            <tr th:if="${hijos.size() == 0}">
+              <td colspan="5" class="text-muted">No hay hijos registrados.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Botón para abrir modal -->
+    <div class="position-fixed bottom-0 end-0 p-4">
+      <button
+        class="btn btn-sm btn-lg rounded-circle shadow"
+        data-bs-toggle="modal"
+        data-bs-target="#modalNuevoHijo"
+      >
+        <i class="bi bi-person-plus-fill fs-4"></i>
+      </button>
+    </div>
+
+    <!-- Modal: Registrar Hijo -->
+    <div class="modal fade" id="modalNuevoHijo" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 modal-redondeado">
+          <form th:action="@{/hijos/registrar}" method="post" class="p-3">
+            <div class="modal-header border-0">
+              <h5 class="modal-title">Registrar Hijo</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nombreUsuario" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  name="nombreUsuario"
+                  id="nombreUsuario"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  name="correo"
+                  id="correo"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input
+                  type="text"
+                  name="contrasena"
+                  id="contrasena"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

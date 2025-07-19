@@ -1,0 +1,115 @@
+
+/**-----------Modo oscuro-------------*/
+
+body.modo-oscuro {
+    background-color: #212529;
+    color: #e0e0e0;
+  }
+  
+  body.modo-oscuro .navbar-vertical {
+    background-color: #1e1e1e;
+    border-right: 1px solid #444;
+  }
+  
+  body.modo-oscuro .navbar-logo {
+    background-color: #ffffffb2 !important;
+  }
+  
+  body.modo-oscuro .navbar-logo:hover {
+    background-color: #ffffffd2 !important;
+  }
+  
+  body.modo-oscuro .text-muted {
+    color: #b0b0b0 !important;
+  }
+  
+  body.modo-oscuro .navbar-contenedor {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  body.modo-oscuro .navbar-contenedor:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /*Barra de busqueda*/
+  body.modo-oscuro .barra-busqueda {
+    background-color: #1E1E1E;
+  }
+  
+  body.modo-oscuro .input-busqueda {
+    background-color: #1E1E1E;
+    border: none;
+    color: white;
+  }
+  
+  body.modo-oscuro .input-busqueda::placeholder {
+    color: #c2c2c280;
+    opacity: 1;
+  }
+  
+  body.modo-oscuro .input-busqueda:focus-within {
+    background-color: #44444438;
+  }
+  
+  /*MiniPerfil*/
+  body.modo-oscuro .card {
+    background-color: #2c2c2c;
+    color: white;
+  }
+
+  /*Titulo de la tabla*/
+  .modo-oscuro .titulo {
+    color: #e4e4e4;
+  }
+
+  /*Modal oscuro*/
+  .modo-oscuro .modal-redondeado {
+    background-color: #1e1e1e;
+  }
+  
+  .modo-oscuro .logo-modal {
+    background-color: rgba(255, 255, 255, 0.89);
+    margin-left: 45%;
+    margin-right: 45%;
+    border-radius: 50%;
+  } 
+  
+  .modo-oscuro .titulo-modal {
+    color: #ffffff;
+  }
+  
+  .modo-oscuro .label-modal {
+    color: #dddddd;
+  }
+  
+  .modo-oscuro .form-control {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border: 1px solid #555555;
+  }
+  
+  .modo-oscuro .form-control::placeholder {
+    color: #aaaaaa;
+  }
+  
+  .modo-oscuro .form-control:hover {
+    border-color: #777777;
+  }
+  
+  .modo-oscuro .btn-modal {
+    background-color: #3bcc75;
+    color: #ffffff;
+  }
+  
+  .modo-oscuro .btn-modal:hover {
+    background-color: #34b366;
+  }
+  
+  .modo-oscuro .btn-cancelar {
+    background-color: #444444;
+    color: #ffffff;
+  }
+  
+  .modo-oscuro .btn-cancelar:hover {
+    background-color: #5a5a5a;
+  }

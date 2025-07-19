@@ -1,0 +1,113 @@
+
+
+/*----------------------------------Tabla-------------------------------------*/
+.container-tabla {
+  margin-top: 100px;
+  margin-left: 175px;
+  margin-right: 100px;
+}
+
+/*Titulos*/
+.titulo {
+  color: #333333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -1.1px;
+}
+
+.titulo-tabla th {
+  color: #171c2a;
+  font-family: Helvetica;
+  font-size: 18px;
+}
+
+/*Botones*/
+.btn-nueva-tarea {
+  background-color: #478971;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.089);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-nueva-tarea:hover {
+  background-color: #326a56;
+  transform: scale(1.05);
+}
+
+.btn-editar {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-editar:hover {
+  background: #1d4ed8;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.btn-eliminar {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-eliminar:hover {
+  background: #dc2626;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.td-acciones {
+  padding: 0 !important;
+}
+
+
+
+/*------------------------------MediaQuery----------------------------------*/
+@media (max-width: 991px) {
+
+  /*Tabla*/
+  .tarea-proxima {
+  background-color: #ffe6e6 !important; /* Rojo claro */
+  color: #8b0000 !important;            /* Texto rojo oscuro */
+  font-weight: bold;
+  }
+  .container-tabla {
+    margin-top: 150px;
+    margin-inline: 40px;
+  }
+  .titulo {
+    font-size: 24px;
+  }
+
+  .titulo-tabla th {
+    font-size: 14px;
+  }
+
+  .table td,
+  .table th {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .btn-editar,
+  .btn-eliminar {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+}

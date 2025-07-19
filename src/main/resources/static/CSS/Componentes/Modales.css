@@ -1,0 +1,105 @@
+/*--------------------------------- Modales ------------------------------------*/
+.modal-redondeado {
+  background-color: #fcfcfc; 
+  border-radius: 30px; 
+  overflow: hidden;
+}
+
+.titulo-modal {
+  color: #333333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -1.1px;
+  margin-bottom: 20px;
+}
+
+/*Formularios*/
+.form {
+  padding: 20px;
+}
+
+.label-modal {
+  font-size: 16px; 
+  margin-bottom: 5px;
+  margin-left: 15px;
+  color: #333333;
+}
+
+.form-control {
+  height: 50px; 
+  border-radius: 15px;
+  font-size: 18px;  
+}
+
+.form-control:hover {
+  border-color: #3f3e3e;
+}
+
+/*Botones*/
+.btn-modal {
+  font-weight: bold;
+  background-color: #478971; 
+  color: #FFFFFF; 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-modal:hover {
+  background-color: rgba(71, 137, 113, 0.918);
+  text-decoration: none;
+}
+
+.btn-cancelar {
+  background-color: #C9C9CB;
+  color: #000000;
+  padding: 10px 15px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+}
+
+.btn-cancelar:hover {
+  background-color: rgba(201, 201, 203, 0.7);
+  color: #000000;
+  text-decoration: none;
+}
+
+
+
+@media (max-width: 991px) {
+    .titulo-modal {
+      font-size: 24px;
+    }
+
+    .label-modal {
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .form-control {
+      height: 40px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+
+    .form {
+      padding: 15px;
+    }
+
+    .btn-modal,
+    .btn-cancelar {
+      padding: 8px 12px;
+      font-size: 14px;
+      border-radius: 20px;
+    }
+
+    .modal-redondeado {
+      border-radius: 20px;
+    }
+  }

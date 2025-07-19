@@ -1,0 +1,315 @@
+
+/*---------------------------------------Navbar-------------------------------------------*/
+.navbar {
+    height: 75px;
+    background: white
+}
+
+.navbar a {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/*Botones*/
+
+.btn-login {
+    background-color: #478971;
+    color: #FFFFFF;
+    padding: 15px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+.btn-login:hover {
+    background-color: rgba(71, 137, 113, 0.8);
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.btn-registrar {
+    background-color: #C9C9CB;
+    color: #000000;
+    padding: 15px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+.btn-registrar:hover {
+    background-color: rgba(201, 201, 203, 0.7);
+    color: #000000;
+    text-decoration: none;
+}
+
+/*boton hamburguesa*/
+
+.navbar-toggler {
+    border: none;
+    background-color: #00000000;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/*-------------------------------------------Main-------------------------------------------*/
+
+.titulo {
+    color: black;
+    font-size: 65px;
+    line-height: 1.2;
+    font-weight: 900;
+}
+
+.logo-vexa {
+    width: 57px;
+    height: 57px;
+    object-fit: contain;
+}
+
+.info {
+    width: 80%;
+    margin-bottom: 100px;
+}
+
+.seccion-acerca {
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 0.5px;
+}
+
+.descripcion {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #000000;
+}
+
+/*Imagenes del main*/
+
+.fondos-vexa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-img {
+    position: absolute;
+    opacity: 0.6;
+    max-width: 20%;
+    height: auto;
+}
+
+.img1 {
+    top: 10%;
+    left: 2%;
+    transform: rotate(-15deg);
+}
+
+.img2 {
+    bottom: 10%;
+    right: 2%;
+    transform: rotate(15deg);   
+}
+
+/*----------------------------------------Modales---------------------------------------*/
+
+.modal-redondeado {
+    background-color: #C9C9CB;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.titulo-modal {
+    color: #333333;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -1.1px;
+}
+
+.form {
+    padding: 20px;
+}
+
+.label-modal {
+    font-size: 16px;
+    margin-bottom: 0%;
+    margin-left: 3%;
+}
+
+.form-control {
+    height: 50px;
+    border-radius: 15px;
+    font-size: 18px;
+}
+
+.form-control:hover {
+    border-color: #3f3e3e;
+}
+
+/*Botones*/
+
+.btn-modal {
+    font-weight: bold;
+    background-color: #478971;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+}
+
+.btn-modal:hover {
+    background-color: rgba(71, 137, 113, 0.918);
+    text-decoration: none;
+}
+
+/*Iconos*/
+.icono {
+    color: #2C69B8;
+    font-size: 30px;
+}
+
+.a-modal-icon:hover .icono {
+    color: #1a4a85;
+}
+
+/*condiciones*/
+.condiciones {
+    font-weight: lighter;
+    font-size: 12px;
+    color: #6e6e6e;
+    text-align: center;
+}
+
+.a-modal {
+    text-decoration: underline;
+    color: #6e6e6e;
+}
+
+.a-modal:hover {
+    text-decoration: none;
+    color: #6e6e6e;
+}
+
+/*------------------------------MediaQuery----------------------------------*/
+@media (max-width: 991px) {
+
+    /*Navbar*/
+    .navbar {
+        background: #C9C9CB;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .navbar-collapse .nav-item {
+        margin-top: 0 !important;
+    }
+
+    .navbar-collapse {
+        margin-top: 0;
+        border-top: none;
+        position: absolute;
+        top: 74.9px;
+        left: 0;
+        padding-left: 2.5%;
+        padding-bottom: 1%;
+        width: 100vw;
+        background: #C9C9CB;
+    }
+
+    .nav-link {
+        padding: 0px;
+    }
+
+    .btn-login {
+        background: #27161600;
+        color: #255799;
+        padding: 0px;
+        font-size: 16px;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        border-radius: 0%;
+    }
+
+    .btn-login:hover {
+        background: #0000008c;
+        color: #f7f7f7;
+        text-decoration: none;
+    }
+
+    .btn-registrar {
+        background-color: #C9C9CB;
+        color: #255799;
+        padding: 0px;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        border-radius: 0%;
+    }
+
+    .btn-registrar:hover {
+        background: #0000008c;
+        border-radius: 0%;
+        color: #f7f7f7;
+        text-decoration: none;
+    }
+
+    /*Main*/
+
+    .titulo {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .descripcion {
+        font-size: 24px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .seccion-acerca {
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .logo-vexa {
+        width: 40px;
+        height: 40px;
+    }
+
+    .info {
+        width: 90%;
+    }
+
+    /*Imagenes del main*/
+    .bg-img {
+        opacity: 0;
+    }
+
+    /*Footer*/
+    .texto-footer {
+        font-size: 12px !important;
+    }
+
+}

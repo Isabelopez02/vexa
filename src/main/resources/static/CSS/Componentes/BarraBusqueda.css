@@ -1,0 +1,52 @@
+
+/*-------------------------------Barra de busqueda------------------------*/
+
+.barra-busqueda {
+  border-radius: 15px;
+  position: fixed;
+  top: 15px;
+  left: 100px;
+  right: 100px;
+  background-color: #E1E1E1;
+  z-index: 1050;
+}
+
+.input-busqueda {
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 16px;
+  background-color: #E1E1E1;
+}
+
+.input-busqueda:focus-within {
+  background-color: #ffffff4d;
+  border: 0px;
+  box-shadow: none;
+}
+
+.icono-lupa {
+  font-size: 20px;
+}
+
+
+@media (max-width: 991px)  {
+  /*Barra de busqueda*/
+  .barra-busqueda {
+    height: 40px;
+    top: 80px;
+    width: calc(100% - 105px); 
+    left: 15px;
+    right: 15px;
+    border-radius: 15px;
+    background-color: #E1E1E1;
+  }
+
+  .input-busqueda {
+    height: 32px !important;
+    font-size: 14px !important;
+  }
+
+}
