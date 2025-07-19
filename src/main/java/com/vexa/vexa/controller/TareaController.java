@@ -97,7 +97,24 @@ public String eliminarTarea(@RequestParam("id") Long id) {
     return "redirect:/inicio"; // o donde estés mostrando la lista de tareas
 }
 
-
+@PostMapping("/tareas/{id}/estado")
+    public String VerificarEstado(@PathVariable long id) {
+        Optional<Tareas> verificarestado = tareasRepository.findById(id);
+        if (verificarestado.isPresent()) {
+            Tareas tarea = verificarestado.get();
+            boolean nuevoEstado = !tarea.isCheckList();
+            tarea.setCheckList(nuevoEstado);
+            if (nuevoEstado) {
+                    tarea.setCheckList(true);
+                    tarea.setEstado("completado");
+            } else {
+                    tarea.setCheckList(false);
+                    tarea.setEstado("pendiente");
+            }
+            tareasRepository.save(tarea);
+    }
+        return "redirect:/inicio";
+    }
 
     @PostMapping("/guardar/tarea")
     public String guardarTarea(@ModelAttribute Tareas tarea,

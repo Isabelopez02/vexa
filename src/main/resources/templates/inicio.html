@@ -100,17 +100,9 @@
                 th:attr="data-fecha=${#temporals.format(tarea.fechaLimite, 'yyyy-MM-dd')}"
               ></td>
               <td>
-                <form
-                  th:action="@{'/tareas/' + ${tarea.id} + '/estado'}"
-                  method="post"
-                >
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    th:checked="${tarea.checkList}"
-                    onchange="this.form.submit()"
-                  />
-                </form>
+                <form th:action="@{'/tareas/'+ ${tarea.id} + '/estado'}" method="post">
+                <input class="form-check-input" type="checkbox" th:checked="${tarea.checkList}" onchange="this.form.submit()">
+              </form>
               </td>
               <td class="td-acciones">
                 <div class="d-flex justify-content-center gap-2 p-2">

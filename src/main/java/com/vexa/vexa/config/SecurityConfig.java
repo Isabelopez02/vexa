@@ -7,14 +7,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
   private final JwtRequestFilter jwtRequestFilter;
@@ -37,17 +40,17 @@ public class SecurityConfig {
     return usuarioDetailsService;
   }
 
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
+ @Bean
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    provider.setUserDetailsService(usuarioDetailsService);
-    provider.setPasswordEncoder(passwordEncoder());
-    return provider;
+    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    authProvider.setUserDetailsService(usuarioDetailsService);
+    authProvider.setPasswordEncoder(passwordEncoder());
+    return authProvider;
   }
 
   @Bean
@@ -58,8 +61,8 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(AbstractHttpConfigurer::disable)
-        .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+    http
+      .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/", "/index", "/log", "/registrar", "/error",
                 "/CSS/**", "/Img/**", "/Icons/**", "/js/**", "/JavaScript/**", "/Font/**", "/webjars/**")
@@ -67,19 +70,21 @@ public class SecurityConfig {
             .requestMatchers("/inicio","/etiquetas/**").hasRole("ADMIN")
             .anyRequest().authenticated())
         .formLogin(form -> form
-            .loginPage("/log")
-            .successHandler(customSuccessHandler) // usa el handler en lugar de defaultSuccessUrl
-            .permitAll())
+        .loginPage("/") 
+            .loginProcessingUrl("/log")
+                        .defaultSuccessUrl("/inicio", true)
+            .failureUrl("/?error=true"))
             
         .logout(logout -> logout
             .logoutUrl("/logout")
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID"));
+            .deleteCookies("JSESSIONID")
+            .permitAll());
+            
 
     http.authenticationProvider(authenticationProvider());
-    http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+    
     return http.build();
   }
 }
